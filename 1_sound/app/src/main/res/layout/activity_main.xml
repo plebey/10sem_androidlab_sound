@@ -14,10 +14,11 @@
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/linearLayout3" app:layout_constraintHorizontal_bias="0.0"
     >
+
         <TextView
-                android:text="TextView"
+                android:text="yo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView"/>
+                android:layout_height="wrap_content" android:id="@+id/songName"/>
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars"
@@ -35,22 +36,22 @@
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout3">
         <Button
-                android:text="prev"
+                android:text="@string/prev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/prev"
                 android:insetLeft="10dp"/>
         <Button
-                android:text="play"
+                android:text="@string/play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/play"
                 android:insetLeft="10dp"/>
         <Button
-                android:text="next"
+                android:text="@string/next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/next"
                 android:insetLeft="10dp"/>
         <Button
-                android:text="repeat"
+                android:text="@string/repeat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/repeat"
                 android:insetLeft="10dp"/>

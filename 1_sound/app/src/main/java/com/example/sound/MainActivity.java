@@ -1,5 +1,6 @@
 package com.example.sound;
 
+import android.media.AudioManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -9,93 +10,57 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
-import java.util.concurrent.TimeUnit;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    MediaPlayer mPlayer;
-    Button playButton, repeatButton, prevButton, ;
-    SeekBar seekBar;
-    TextView duration, name;
-    ImageView image;
+    private MediaPlayer mPlayer;
+    private Button playButton, repeatButton, prevButton;
+    private SeekBar seekBar;
+    private TextView duration, song_name;
+    private ImageView image;
     private double timeElapsed = 0;
     private double finalTime = 0;
+    boolean isPlaying = false;
 
     private Handler durationHandler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        playButton = (Button) findViewById(R.id.play);
-        repeatButton = (Button) findViewById(R.id.repeat);
-        prevButton = (Button) findViewById(R.id.prev);
-        stopButton = (Button) findViewById(R.id.next);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        duration = (TextView) findViewById(R.id.textView);
-        name = (TextView) findViewById(R.id.textView2);
-        image = (ImageView) findViewById(R.id.imageView);
-        name.setText(getString(R.string.song));
+        final Button playButton = findViewById(R.id.play);
+        final Button repeatButton = findViewById(R.id.repeat);
+        final Button prevButton = findViewById(R.id.prev);
+        final TextView songName = findViewById(R.id.songName);
+        mPlayer = new MediaPlayer();
 
-        int resID = getResources().getIdentifier(getString(R.string.
-                song), "drawable", getPackageName()); //R.drawable.russia
-        image.setImageResource(resID);
-        int resID2 = getResources().getIdentifier(getString(R.string.
-                song), "raw", getPackageName()); //R.raw.russia
-        mPlayer = MediaPlayer.create(this, resID2);
-        mPlayer.setOnCompletionListener(new
-                                                MediaPlayer.OnCompletionListener() {
-                                                    @Override
-                                                    public void onCompletion(MediaPlayer mp) {
-                                                        stopPlay();
-                                                    }
-                                                });
-        finalTime = mPlayer.getDuration();
 
-        seekBar.setProgress(0);
-        seekBar.setMax((int) finalTime);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isPlaying) {
+                    playButton.setText(R.string.pause);
+                    isPlaying = !isPlaying;
+                    String mPath = "https://getsamplefiles.com/download/m4a/sample-1.m4a";
+                    try {
+                        mPlayer.setDataSource(mPath);
+                        mPlayer.prepare();
+                        mPlayer.start();
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
 
-        seekBar.setClickable(false);
+                }
+                else if (isPlaying) {
+                    playButton.setText(R.string.play);
+                    isPlaying = !isPlaying;
+                }
 
-        seekBar.setOnSeekBarChangeListener(new
-                                                   SeekBar.OnSeekBarChangeListener() {
-                                                       @Override
-                                                       public void onProgressChanged(SeekBar
-16
-        seekBar, int i, boolean b) {
-                                                           if (b) {
-                                                               mPlayer.seekTo(i);
-
-                                                               seekBar.setProgress(i);
-                                                           }
-                                                       }
-                                                       @Override
-                                                       public void onStartTrackingTouch(SeekBar seekBar) {
-                                                       }
-                                                       @Override
-                                                       public void onStopTrackingTouch(SeekBar seekBar) {
-                                                       }
-                                                   });
-        pauseButton.setEnabled(false);
-        stopButton.setEnabled(false);
+            }
+        });
     }
 
-    private Runnable updateSeekBarTime = new Runnable() {
-        public void run() {
-            timeElapsed = mPlayer.getCurrentPosition();
-
-            seekBar.setProgress((int) timeElapsed);
-
-            double timeRemaining = finalTime - timeElapsed;
-
-            duration.setText(String.format(Locale.US, "%d min, %d sec",
-                    TimeUnit.0,//,6(&21'6.toMinutes((long) timeRemaining),
-                    TimeUnit.0,//,6(&21'6.toSeconds((long) timeRemaining)
-                    -
-                            TimeUnit.0,187(6.toSeconds(TimeUnit.0,//,6(&21'6.toMinutes((long)
-                    timeRemaining)))
-);
-            durationHandler.postDelayed(this, 100);
-        }
-    }
 }

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">sound</string>
+    <string name="prev">prev</string>
+    <string name="play">play</string>
+    <string name="pause">pause</string>
+    <string name="next">next</string>
+    <string name="repeat">repeat</string>
 </resources>
