@@ -86,14 +86,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mPath.length>1) {
-                    Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
-                    Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
-                    if (matcher.find())
-                    {
-                        songName.setText(matcher.group(1));
-                    }
-
-                    if (curr_song_id[0] < mPath.length-1)
+                                        if (curr_song_id[0] < mPath.length-1)
                         curr_song_id[0] = curr_song_id[0] + 1;
                     else
                         curr_song_id[0] = 0;
@@ -109,6 +102,12 @@ public class MainActivity extends AppCompatActivity {
                     {
                         e.printStackTrace();
                     }
+                    Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
+                    Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
+                    if (matcher.find())
+                    {
+                        songName.setText(matcher.group(1));
+                    }
                     mPlayer.start();
                     playButton.setText(R.string.pause);
                 }
@@ -119,12 +118,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mPath.length>1) {
-                    Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
-                    Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
-                    if (matcher.find())
-                    {
-                        songName.setText(matcher.group(1));
-                    }
 
                     if (curr_song_id[0] == 0)
                         curr_song_id[0] = mPath.length-1;
@@ -141,6 +134,12 @@ public class MainActivity extends AppCompatActivity {
                     catch (IOException e)
                     {
                         e.printStackTrace();
+                    }
+                    Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
+                    Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
+                    if (matcher.find())
+                    {
+                        songName.setText(matcher.group(1));
                     }
                     mPlayer.start();
                     playButton.setText(R.string.pause);
