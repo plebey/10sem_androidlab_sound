@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!mPlayer.isPlaying()) {
                     playButton.setBackgroundResource(R.drawable.pause);
-                    songPh.set(mPath_ph[0]);
+                    //songPh.set(mPath_ph[0]);
                     mPlayer.start();
                     Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
                     Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
