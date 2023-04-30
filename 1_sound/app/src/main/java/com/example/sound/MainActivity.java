@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
 
     private MediaPlayer mPlayer;
-    private Button playButton, repeatButton, prevButton, nextButton;
+    private ImageButton playButton, repeatButton, prevButton, nextButton;
     private SeekBar seekBar;
     private TextView duration, songName;
-    private ImageView image;
+    private ImageView songPh;
     private double timeElapsed = 0;
     private double finalTime = 0;
 
@@ -33,10 +33,15 @@ public class MainActivity extends AppCompatActivity {
         prevButton = findViewById(R.id.prev);
         nextButton = findViewById(R.id.next);
         songName = findViewById(R.id.songName);
+        songPh = findViewById(R.id.songPh);
+        seekBar = findViewById(R.id.seekBar);
 
         String[] mPath = {"https://getsamplefiles.com/download/m4a/sample-3.m4a",
                 "https://getsamplefiles.com/download/m4a/sample-4.m4a",
                 "https://getsamplefiles.com/download/m4a/sample-5.m4a"};
+        String[] mPath_ph = {"https://images-workbench.99static.com/eJZ_L80DvKAYfT00fADDUgjfjE0=/99designs-contests-attachments/85/85381/attachment_85381335",
+        "https://images-workbench.99static.com/BWy_H3O1rX_XT_mxIRwpXbBrROU=/99designs-contests-attachments/85/85887/attachment_85887172",
+        "https://images-workbench.99static.com/5Xrcjp0v9NiGTXLiVgeNr9jHeRA=/99designs-contests-attachments/99/99226/attachment_99226865"};
         mPlayer = new MediaPlayer();
         final int[] curr_song_id = {0};
         try {
@@ -53,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!mPlayer.isPlaying()) {
-                    playButton.setText(R.string.pause);
+                    playButton.setBackgroundResource(R.drawable.pause);
+                    songPh.set(mPath_ph[0]);
                     mPlayer.start();
                     Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
                     Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
@@ -64,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else if (mPlayer.isPlaying()) {
-                    playButton.setText(R.string.play);
+                    playButton.setBackgroundResource(R.drawable.play);
 
                     mPlayer.pause();
                 }
@@ -109,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                         songName.setText(matcher.group(1));
                     }
                     mPlayer.start();
-                    playButton.setText(R.string.pause);
+                    playButton.setBackgroundResource(R.drawable.pause);
                 }
             }
         });
@@ -142,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                         songName.setText(matcher.group(1));
                     }
                     mPlayer.start();
-                    playButton.setText(R.string.pause);
+                    playButton.setBackgroundResource(R.drawable.pause);
                 }
             }
         });
@@ -151,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     protected void stopPlay()
     {
         mPlayer.stop();
-        playButton.setText(R.string.play);
+        playButton.setBackgroundResource(R.drawable.play);
         try {
             mPlayer.prepare();
             mPlayer.seekTo(0);

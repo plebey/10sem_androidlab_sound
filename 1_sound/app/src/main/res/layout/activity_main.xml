@@ -6,57 +6,84 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="521dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/linearLayout3" app:layout_constraintHorizontal_bias="0.0"
-    >
 
-        <TextView
-                android:text="yo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/songName"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars"
-                android:id="@+id/imageView2"/>
-        <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/seekBar3"/>
-    </LinearLayout>
-    <LinearLayout
+    <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="20dp" android:paddingTop="50dp"
-            android:id="@+id/linearLayout"
+            tools:srcCompat="@tools:sample/avatars"
+            android:id="@+id/songPh"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout3">
-        <Button
-                android:text="@string/prev"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/prev"
-                android:insetLeft="10dp"/>
-        <Button
-                android:text="@string/play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/play"
-                android:insetLeft="10dp"/>
-        <Button
-                android:text="@string/next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/next"
-                android:insetLeft="10dp"/>
-        <Button
-                android:text="@string/repeat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/repeat"
-                android:insetLeft="10dp"/>
-        <SeekBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/seekBar" android:layout_weight="1"/>
-    </LinearLayout>
+            android:layout_marginTop="84dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"/>
+
+    <SeekBar
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="220dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"/>
+
+    <TextView
+            android:text="yo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/songName"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+
+    <ImageButton
+
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/prev"
+            android:id="@+id/prev"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="252dp"
+            android:layout_marginStart="40dp"/>
+
+    <ImageButton
+            android:layout_width="65dp"
+            android:layout_height="65sp"
+            android:background="@drawable/play"
+            android:id="@+id/play"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="252dp"
+            android:layout_marginStart="120dp"/>
+
+    <ImageButton
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/next"
+            android:id="@+id/next"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="252dp"
+            android:layout_marginStart="200dp"/>
+
+    <ImageButton
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/repeat"
+            android:id="@+id/repeat"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="252dp"
+            android:layout_marginStart="300dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
