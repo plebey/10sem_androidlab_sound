@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/1song_background.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/2song_background.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/3song_background.xml" value="0.18697916666666667" />
         <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1515625" />
         <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/ic_music_player_pause_button_svgrepo_com.xml" value="0.17291666666666666" />
@@ -11,7 +14,10 @@
         <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/next.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/play.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/prev.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/song1_background.xml" value="0.18020833333333333" />
+        <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/drawable/song2_background.xml" value="0.18020833333333333" />
         <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/PlebeyBob/Desktop/Michael_5831/maga_2/Android/1_sound/app/src/main/res/mipmap-anydpi-v26/1song.xml" value="0.18697916666666667" />
       </map>
     </option>
   </component>

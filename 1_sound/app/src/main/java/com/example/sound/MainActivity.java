@@ -1,5 +1,8 @@
 package com.example.sound;
 
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +10,9 @@ import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Bundle;
 import android.view.View;
+import com.example.sound.R;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,13 +40,12 @@ public class MainActivity extends AppCompatActivity {
         songName = findViewById(R.id.songName);
         songPh = findViewById(R.id.songPh);
         seekBar = findViewById(R.id.seekBar);
+        duration = findViewById(R.id.duration);
 
         String[] mPath = {"https://getsamplefiles.com/download/m4a/sample-3.m4a",
                 "https://getsamplefiles.com/download/m4a/sample-4.m4a",
                 "https://getsamplefiles.com/download/m4a/sample-5.m4a"};
-        String[] mPath_ph = {"https://images-workbench.99static.com/eJZ_L80DvKAYfT00fADDUgjfjE0=/99designs-contests-attachments/85/85381/attachment_85381335",
-        "https://images-workbench.99static.com/BWy_H3O1rX_XT_mxIRwpXbBrROU=/99designs-contests-attachments/85/85887/attachment_85887172",
-        "https://images-workbench.99static.com/5Xrcjp0v9NiGTXLiVgeNr9jHeRA=/99designs-contests-attachments/99/99226/attachment_99226865"};
+        //String[] mPath_ph = {R.};
         mPlayer = new MediaPlayer();
         final int[] curr_song_id = {0};
         try {
@@ -59,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!mPlayer.isPlaying()) {
                     playButton.setBackgroundResource(R.drawable.pause);
-                    //songPh.set(mPath_ph[0]);
+                    int i = curr_song_id[0]+1;
+                    String url = "drawable/"+"pic"+i;
+                    int imageKey = getResources().getIdentifier(url,"drawable", getPackageName());
+                    songPh.setBackgroundResource(imageKey);
                     mPlayer.start();
                     Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
                     Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
@@ -74,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
                     mPlayer.pause();
                 }
-
             }
         });
         repeatButton.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
                     {
                         songName.setText(matcher.group(1));
                     }
+                    int i = curr_song_id[0]+1;
+                    String url = "drawable/"+"pic"+i;
+                    int imageKey = getResources().getIdentifier(url,"drawable", getPackageName());
+                    songPh.setBackgroundResource(imageKey);
+
                     mPlayer.start();
                     playButton.setBackgroundResource(R.drawable.pause);
                 }
@@ -147,6 +158,10 @@ public class MainActivity extends AppCompatActivity {
                     {
                         songName.setText(matcher.group(1));
                     }
+                    int i = curr_song_id[0]+1;
+                    String url = "drawable/"+"pic"+i;
+                    int imageKey = getResources().getIdentifier(url,"drawable", getPackageName());
+                    songPh.setBackgroundResource(imageKey);
                     mPlayer.start();
                     playButton.setBackgroundResource(R.drawable.pause);
                 }
