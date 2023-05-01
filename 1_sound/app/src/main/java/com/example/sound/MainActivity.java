@@ -86,11 +86,15 @@ public class MainActivity extends AppCompatActivity {
         repeatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mPlayer.isPlaying()) {
-                    if (!mPlayer.isLooping())
+                if (mPlayer.isPlaying()) {
+                    if (!mPlayer.isLooping()) {
+                        repeatButton.setBackgroundResource(R.drawable.repeat_clicked);
                         mPlayer.setLooping(true);
-                    else
+                    }
+                    else {
                         mPlayer.setLooping(false);
+                        repeatButton.setBackgroundResource(R.drawable.repeat);
+                    }
                 }
             }
         });
