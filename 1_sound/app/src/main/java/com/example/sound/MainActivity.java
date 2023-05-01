@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private ImageView songPh;
     private double timeElapsed = 0;
     private double finalTime = 0;
+    final String[] mPath = {"https://getsamplefiles.com/download/m4a/sample-3.m4a",
+            "https://getsamplefiles.com/download/m4a/sample-4.m4a",
+            "https://getsamplefiles.com/download/m4a/sample-5.m4a"};
+    final int[] curr_song_id = {0};
 
 
     private Handler durationHandler = new Handler();
@@ -42,12 +46,10 @@ public class MainActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.seekBar);
         duration = findViewById(R.id.duration);
 
-        String[] mPath = {"https://getsamplefiles.com/download/m4a/sample-3.m4a",
-                "https://getsamplefiles.com/download/m4a/sample-4.m4a",
-                "https://getsamplefiles.com/download/m4a/sample-5.m4a"};
+
         //String[] mPath_ph = {R.};
         mPlayer = new MediaPlayer();
-        final int[] curr_song_id = {0};
+
         try {
             mPlayer.setDataSource(mPath[curr_song_id[0]]);
             mPlayer.prepare();
@@ -57,122 +59,98 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!mPlayer.isPlaying()) {
-                    playButton.setBackgroundResource(R.drawable.pause);
-                    int i = curr_song_id[0]+1;
-                    String url = "drawable/"+"pic"+i;
-                    int imageKey = getResources().getIdentifier(url,"drawable", getPackageName());
-                    songPh.setBackgroundResource(imageKey);
-                    mPlayer.start();
-                    Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
-                    Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
-                    if (matcher.find())
-                    {
-                        songName.setText(matcher.group(1));
-                    }
-
-                }
-                else if (mPlayer.isPlaying()) {
-                    playButton.setBackgroundResource(R.drawable.play);
-
-                    mPlayer.pause();
-                }
-            }
-        });
-        repeatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mPlayer.isPlaying()) {
-                    if (!mPlayer.isLooping()) {
-                        repeatButton.setBackgroundResource(R.drawable.repeat_clicked);
-                        mPlayer.setLooping(true);
-                    }
-                    else {
-                        mPlayer.setLooping(false);
-                        repeatButton.setBackgroundResource(R.drawable.repeat);
-                    }
-                }
-            }
-        });
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mPath.length>1) {
-                                        if (curr_song_id[0] < mPath.length-1)
-                        curr_song_id[0] = curr_song_id[0] + 1;
-                    else
-                        curr_song_id[0] = 0;
-
-                    mPlayer.release();
-                    try {
-                        mPlayer = new MediaPlayer();
-                        mPlayer.setDataSource(mPath[curr_song_id[0]]);
-                        mPlayer.prepare();
-
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
-                    Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
-                    if (matcher.find())
-                    {
-                        songName.setText(matcher.group(1));
-                    }
-                    int i = curr_song_id[0]+1;
-                    String url = "drawable/"+"pic"+i;
-                    int imageKey = getResources().getIdentifier(url,"drawable", getPackageName());
-                    songPh.setBackgroundResource(imageKey);
-
-                    mPlayer.start();
-                    playButton.setBackgroundResource(R.drawable.pause);
-                }
-            }
-        });
-
-        prevButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mPath.length>1) {
-
-                    if (curr_song_id[0] == 0)
-                        curr_song_id[0] = mPath.length-1;
-                    else
-                        curr_song_id[0] = curr_song_id[0] - 1;
-
-                    mPlayer.release();
-                    try {
-                        mPlayer = new MediaPlayer();
-                        mPlayer.setDataSource(mPath[curr_song_id[0]]);
-                        mPlayer.prepare();
-
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
-                    Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
-                    if (matcher.find())
-                    {
-                        songName.setText(matcher.group(1));
-                    }
-                    int i = curr_song_id[0]+1;
-                    String url = "drawable/"+"pic"+i;
-                    int imageKey = getResources().getIdentifier(url,"drawable", getPackageName());
-                    songPh.setBackgroundResource(imageKey);
-                    mPlayer.start();
-                    playButton.setBackgroundResource(R.drawable.pause);
-                }
-            }
-        });
+        playButton.setOnClickListener(view -> playButton());
+        repeatButton.setOnClickListener(view -> repeatButton());
+        nextButton.setOnClickListener(view -> nextButton());
+        prevButton.setOnClickListener(view -> prevButton());
     }
 
+    protected void setNamePic (){
+        int i = curr_song_id[0]+1;
+        String url = "drawable/"+"pic"+i;
+        int imageKey = getResources().getIdentifier(url,"drawable", getPackageName());
+        songPh.setBackgroundResource(imageKey);
+        Pattern pattern = Pattern.compile("m4a/(.*?).m4a");
+        Matcher matcher = pattern.matcher(mPath[curr_song_id[0]]);
+        if (matcher.find())
+        {
+            songName.setText(matcher.group(1));
+        }
+    }
+    protected void playButton (){
+        if (!mPlayer.isPlaying()) {
+            playButton.setBackgroundResource(R.drawable.pause);
+            mPlayer.start();
+            setNamePic();
+        }
+        else if (mPlayer.isPlaying()) {
+            playButton.setBackgroundResource(R.drawable.play);
+            mPlayer.pause();
+        }
+    }
+
+    protected void repeatButton (){
+        if (mPlayer.isPlaying()) {
+            if (!mPlayer.isLooping()) {
+                repeatButton.setBackgroundResource(R.drawable.repeat_clicked);
+                mPlayer.setLooping(true);
+            }
+            else {
+                mPlayer.setLooping(false);
+                repeatButton.setBackgroundResource(R.drawable.repeat);
+            }
+        }
+    }
+
+    protected void nextButton(){
+        if (mPath.length>1) {
+            if (curr_song_id[0] < mPath.length-1)
+                curr_song_id[0] = curr_song_id[0] + 1;
+            else
+                curr_song_id[0] = 0;
+
+            mPlayer.release();
+            try {
+                mPlayer = new MediaPlayer();
+                mPlayer.setDataSource(mPath[curr_song_id[0]]);
+                mPlayer.prepare();
+
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            setNamePic();
+
+            mPlayer.start();
+            playButton.setBackgroundResource(R.drawable.pause);
+        }
+    }
+
+    protected void prevButton(){
+        if (mPath.length>1) {
+
+            if (curr_song_id[0] == 0)
+                curr_song_id[0] = mPath.length-1;
+            else
+                curr_song_id[0] = curr_song_id[0] - 1;
+
+            mPlayer.release();
+            try {
+                mPlayer = new MediaPlayer();
+                mPlayer.setDataSource(mPath[curr_song_id[0]]);
+                mPlayer.prepare();
+
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            setNamePic();
+            mPlayer.start();
+            playButton.setBackgroundResource(R.drawable.pause);
+        }
+    }
     protected void stopPlay()
     {
         mPlayer.stop();
