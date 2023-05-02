@@ -7,4 +7,33 @@
         android:layout_height="match_parent"
         tools:context=".recorder">
 
+    <Button
+            android:text="record"
+            android:layout_width="132dp"
+            android:layout_height="58dp"
+            android:id="@+id/record"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="212dp"
+            android:layout_marginStart="136dp"/>
+
+    <Button
+            android:text="play"
+            android:layout_width="131dp"
+            android:layout_height="60dp"
+            android:id="@+id/playRec"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="136dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="320dp"/>
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeRec"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="164dp"
+            android:layout_marginStart="176dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
